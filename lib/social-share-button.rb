@@ -1,3 +1,5 @@
+require 'rest-client'
+require 'digest/md5'
 require "social_share_button/version"
 require "social_share_button/config"
 require "social_share_button/helper"

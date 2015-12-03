@@ -9,7 +9,7 @@ window.SocialShareButton =
   share : (el) ->
     site = $(el).data('site')
     appkey = $(el).data('appkey') || ''
-    $parent = $(el).parent()
+    $parent = $(el).parent().parent()
     title = encodeURIComponent($(el).data(site + '-title') || $parent.data('title') || '')
     img = encodeURIComponent($parent.data("img") || '')
     url = encodeURIComponent($parent.data("url") || '')
@@ -30,6 +30,8 @@ window.SocialShareButton =
         SocialShareButton.openUrl("https://twitter.com/intent/tweet?url=#{url}&text=#{title}#{via_str}",popup)
       when "douban"
         SocialShareButton.openUrl("http://shuo.douban.com/!service/share?href=#{url}&name=#{title}&image=#{img}&sel=#{desc}",popup)
+      when "reddit"
+        SocialShareButton.openUrl("http://www.reddit.com/submit?url=#{url}",popup)
       when "facebook"
         SocialShareButton.openUrl("http://www.facebook.com/sharer.php?u=#{url}",popup)
       when "qq"
