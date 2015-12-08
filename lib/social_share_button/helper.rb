@@ -50,7 +50,7 @@ module SocialShareButton
         'twitter'
       elsif site =='google_plus'
         url = "https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ"
-        response = post(url, JSON.dump(params(current_url)), {content_type: :json, accept: :json})
+        response = post(url, JSON.dump(pr(current_url)), {content_type: :json, accept: :json})
         JSON.parse(response)[0]['result']['metadata']['globalCounts']['count'].to_i
       elsif site =='delicious'
         md5 = Digest::MD5.hexdigest(current_url)
@@ -73,7 +73,7 @@ module SocialShareButton
       RestClient::Resource.new(url, timeout: 3, open_timeout: 3).post(params, headers)
     end
 
-    def params checked_url
+    def pr checked_url
       [{
            'method' => 'pos.plusones.get',
            'id' => 'p',
