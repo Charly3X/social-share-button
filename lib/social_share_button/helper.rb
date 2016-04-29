@@ -38,6 +38,26 @@ module SocialShareButton
       raw html.join("\n")
     end
 
+
+    def social_share_button_left_tag(title = "", opts = {})
+      html = []
+
+      html << "<div class='likes_block'>
+           <ul class='likes_list' data-url='#{opts[:url]}' data-popup='#{opts[:popup]}'>
+              <li class='likes_item'>
+                 <a class='likes_link mod_share' href='#' title='#'><span class='title_likes mod_share'>Share</span></a>
+              </li>
+              <li class='likes_item'>
+                 <a class='likes_link mod_fb facebook' data-site='facebook' href='#' onclick='return SocialShareButton.share(this);' title='#'><span class='title_likes mod_fb facebook'>Like</span></a>
+              </li>
+              <li class='likes_item g-plusone-class'>
+                <a class='likes_link mod_gl google' data-site='google_plus' onclick='return SocialShareButton.share(this);' href='#' title='#'><span class='google title_likes mod_gl'>+1</span></a>
+              </li>
+           </ul>
+      </div>"
+      raw html.join("\n")
+    end
+
     private
 
     def get_count site, current_url
