@@ -60,7 +60,7 @@ module SocialShareButton
         html << "<a class='ov_share_link #{name_class}_mod' href='#' data-site='#{name}' onclick='return SocialShareButton.share(this);' >
                    <dl class='ov_share_dl'>
                      <dt class='ov_share_dt'>#{name_social.capitalize}</dt>
-                     <dd class='ov_share_dd'>#{get_count(name, opts[:url])} #{shares}</dd>
+                     <dd class='ov_share_dd facebook_share_id'>#{get_count(name, opts[:url])} #{shares}</dd>
                      <dd class='ov_share_dd visual_mod'>"
         if name == 'facebook'
           html <<  "<span class='fb_mod mod_0 ov_share_visual'></span>"
@@ -90,13 +90,13 @@ module SocialShareButton
       html << "<div class='likes_block'>
            <ul class='likes_list' data-url='#{opts[:url]}' data-popup='#{opts[:popup]}'>
               <li class='likes_item'>
-                 <a class='likes_link mod_share js_ov_butt_share' href='#' title='#'><span class='title_likes mod_share'>Share</span></a>
+                 <a class='likes_link mod_share js_ov_butt_share'><span class='title_likes mod_share'>Share</span></a>
               </li>
               <li class='likes_item'>
-                 <a class='likes_link mod_fb facebook' data-site='facebook' href='#' onclick='return SocialShareButton.share(this);' title='#'><span class='title_likes mod_fb facebook'>Like</span></a>
+                 <a class='likes_link mod_fb facebook' data-site='facebook' onclick='return SocialShareButton.share(this);'><span class='title_likes mod_fb facebook'>Like</span></a>
               </li>
               <li class='likes_item g-plusone-class'>
-                <a class='likes_link mod_gl google' data-site='google_plus' onclick='return SocialShareButton.share(this);' href='#' title='#'><span class='google title_likes mod_gl'>+1</span></a>
+                <a class='likes_link mod_gl google' data-site='google_plus' onclick='return SocialShareButton.share(this);'><span class='google title_likes mod_gl'>+1</span></a>
               </li>
            </ul>
       </div>"

@@ -1,3 +1,10 @@
+#$ ->
+#  $.get '/get_social_share_count', ->
+#    alert '11'
+#    return
+
+  #$('.facebook_share_id').text '11111'
+
 window.SocialShareButton =
   openUrl : (url,popup) ->
     if popup == "true"
@@ -10,9 +17,9 @@ window.SocialShareButton =
     site = $(el).data('site')
     appkey = $(el).data('appkey') || ''
     $parent = $(el).parent().parent()
-    title = encodeURIComponent($(el).data(site + '-title') || $parent.data('title') || '')
+    title = encodeURIComponent($(el).data(site + '-title') || $parent.data('title') || $(document).find("title").text() || '')
     img = encodeURIComponent($parent.data("img") || '')
-    url = encodeURIComponent($parent.data("url") || '')
+    url = encodeURIComponent($parent.data("url") || window.location.href || '')
     via = encodeURIComponent($parent.data("via") || '')
     desc = encodeURIComponent($parent.data("desc") || ' ')
     popup = encodeURIComponent($parent.data("popup") || 'false')
