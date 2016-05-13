@@ -93,10 +93,16 @@ module SocialShareButton
                  <a class='likes_link mod_share js_ov_butt_share'><span class='title_likes mod_share'>Share</span></a>
               </li>
               <li class='likes_item'>
-                 <a class='likes_link mod_fb facebook' data-site='facebook' onclick='return SocialShareButton.share(this);'><span class='title_likes mod_fb facebook'>Like</span></a>
+                 <a class='likes_link mod_fb facebook' data-site='facebook' onclick='return SocialShareButton.share(this);'>
+                    <span class='num_likes'>#{get_count('facebook', opts[:url])}</span>
+                    <span class='title_likes mod_fb facebook'>Share</span>
+                 </a>
               </li>
               <li class='likes_item g-plusone-class'>
-                <a class='likes_link mod_gl google' data-site='google_plus' onclick='return SocialShareButton.share(this);'><span class='google title_likes mod_gl'>+1</span></a>
+                <a class='likes_link mod_gl google' data-site='google_plus' onclick='return SocialShareButton.share(this);'>
+                  <span class='num_likes'>#{get_count('google_plus', opts[:url])}</span>
+                  <span class='google title_likes mod_gl'>+1</span>
+                </a>
               </li>
            </ul>
       </div>"
