@@ -100,7 +100,7 @@ module SocialShareButton
               </li>
               <li class='likes_item g-plusone-class'>
                 <a class='likes_link mod_gl google' data-site='google_plus' onclick='return SocialShareButton.share(this);'>
-                  <span class='num_likes dyn_socical' data-type='facebook' data-url='#{opts[:url]}'></span>
+                  <span class='num_likes dyn_socical' data-type='google_plus' data-url='#{opts[:url]}'></span>
                   <span class='google title_likes mod_gl'>+1</span>
                 </a>
               </li>

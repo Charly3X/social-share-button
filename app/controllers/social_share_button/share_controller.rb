@@ -29,7 +29,28 @@ module SocialShareButton
       end
       render text: res
     rescue Exception => e
-      0
+      render text: 0
+    end
+
+    def post(url, params, headers = {})
+      RestClient::Resource.new(url, timeout: 3, open_timeout: 3).post(params, headers)
+    end
+
+    def pr checked_url
+      [{
+           'method' => 'pos.plusones.get',
+           'id' => 'p',
+           'jsonrpc' => '2.0',
+           'key' => 'p',
+           'apiVersion' => 'v1',
+           'params' => {
+               'nolog' => true,
+               'id' => checked_url,
+               'source' => 'widget',
+               'userId' => '@viewer',
+               'groupId' => '@self'
+           }
+       }]
     end
 
   end
