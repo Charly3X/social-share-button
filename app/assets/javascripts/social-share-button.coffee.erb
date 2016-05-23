@@ -1,9 +1,11 @@
-#$ ->
-#  $.get '/get_social_share_count', ->
-#    alert '11'
-#    return
+$ ->
+  $('.dyn_socical').each (i, obj) ->
+    $.get "<%= SocialShareButton::Engine.routes.url_helpers.root_path %>", {site: $(this).attr('data-type'), current_url: $(this).attr('data-url')}, (data) =>
+      console.log data
+      $(this).text data
+      return
+  return
 
-  #$('.facebook_share_id').text '11111'
 
 window.SocialShareButton =
   openUrl : (url,popup) ->
