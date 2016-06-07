@@ -1,7 +1,6 @@
 $ ->
   $('.dyn_socical').each (i, obj) ->
     $.get "<%= SocialShareButton::Engine.routes.url_helpers.root_path %>", {site: $(this).attr('data-type'), current_url: $(this).attr('data-url')}, (data) =>
-      console.log data
       $(this).text data
       return
   return
@@ -20,11 +19,11 @@ window.SocialShareButton =
     appkey = $(el).data('appkey') || ''
     $parent = $(el).parent().parent()
     title = encodeURIComponent($(el).data(site + '-title') || $parent.data('title') || $(document).find("title").text() || '')
-    img = encodeURIComponent($parent.data("img") || '')
-    url = encodeURIComponent($parent.data("url") || window.location.href || '')
-    via = encodeURIComponent($parent.data("via") || '')
-    desc = encodeURIComponent($parent.data("desc") || ' ')
-    popup = encodeURIComponent($parent.data("popup") || 'false')
+    img = encodeURIComponent($parent.data("img") || $(el).data("img") || '')
+    url = encodeURIComponent($parent.data("url") || $(el).data("img") || window.location.href || '')
+    via = encodeURIComponent($parent.data("via") || $(el).data("img") || '')
+    desc = encodeURIComponent($parent.data("desc") || $(el).data("img") || ' ')
+    popup = encodeURIComponent($parent.data("popup") || $(el).data("img") || 'false')
 
     if url.length == 0
       url = encodeURIComponent(location.href)

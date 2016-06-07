@@ -111,12 +111,9 @@ module SocialShareButton
 
     def social_share_button_shop(title = "", opts = {})
       html = []
-
-      html << "
-               <a data-site='facebook' data-url='#{opts[:url]}' data-site='facebook' onclick='return SocialShareButton.share(this);'><img src='#{image_path('fb_rect.png')}' alt='Facebook'></a>
+      html << "<a data-site='facebook' data-url='#{opts[:url]}' data-site='facebook' onclick='return SocialShareButton.share(this);'><img src='#{image_path('fb_rect.png')}' alt='Facebook'></a>
                <a data-site='twitter' data-url='#{opts[:url]}' data-type='twitter' onclick='return SocialShareButton.share(this);'><img src='#{image_path('tw_rect.png')}' alt='Twitter'></a>
-               <a data-site='google_plus' data-url='#{opts[:url]}' data-type='google_plus' onclick='return SocialShareButton.share(this);'><img src='#{image_path('gp_rect.png')}' alt='Google+'></a>
-                "
+               <a data-site='google_plus' data-url='#{opts[:url]}' data-type='google_plus' onclick='return SocialShareButton.share(this);'><img src='#{image_path('gp_rect.png')}' alt='Google+'></a>"
       raw html.join("\n")
     end
 
