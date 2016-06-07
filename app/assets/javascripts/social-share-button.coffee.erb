@@ -20,10 +20,10 @@ window.SocialShareButton =
     $parent = $(el).parent().parent()
     title = encodeURIComponent($(el).data(site + '-title') || $parent.data('title') || $(document).find("title").text() || '')
     img = encodeURIComponent($parent.data("img") || $(el).data("img") || '')
-    url = encodeURIComponent($parent.data("url") || $(el).data("img") || window.location.href || '')
-    via = encodeURIComponent($parent.data("via") || $(el).data("img") || '')
-    desc = encodeURIComponent($parent.data("desc") || $(el).data("img") || ' ')
-    popup = encodeURIComponent($parent.data("popup") || $(el).data("img") || 'false')
+    url = encodeURIComponent($parent.data("url") || $(el).data("url") || window.location.href || '')
+    via = encodeURIComponent($parent.data("via") || $(el).data("via") || '')
+    desc = encodeURIComponent($parent.data("desc") || $(el).data("desc") || ' ')
+    popup = encodeURIComponent($parent.data("popup") || $(el).data("popup") || 'false')
 
     if url.length == 0
       url = encodeURIComponent(location.href)
