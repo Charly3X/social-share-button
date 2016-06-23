@@ -26,7 +26,11 @@ module SocialShareButton
         end
         link_title = t "social_share_button.share_to", :name => t("social_share_button.#{name.downcase}")
         html << "<li class='head_social_item adpt_swp_item'>"
-        html << "<a class='head_social_item_inner #{name_class}' href='#' data-site='#{name}' onclick='return SocialShareButton.share(this);' ><span class='amount_likes'> #{get_count(name, opts[:url])} </span> <span class='#{name_class} share_link'>share</span></a>"
+        html << "<a class='head_social_item_inner #{name_class}' href='#' data-site='#{name}' onclick='return SocialShareButton.share(this);' >
+                 <span class='amount_likes #{'dyn_socical' unless name == 'twitter' }' data-type='#{name}' data-url='#{opts[:url]}'>#{'twitter' if name == 'twitter' }</span> <span class='#{name_class} share_link'>share</span></a>"
+
+        #<span class='amount_likes' data-type='facebook' data-url='#{opts[:url]}'> #{get_count(name, opts[:url])} </span> <span class='#{name_class} share_link'>share</span></a>"
+
         #html << link_to("","#", {:rel => ["nofollow", rel],
         #                          "data-site" => name,
         #                          :class => "social-share-button-#{name}",
