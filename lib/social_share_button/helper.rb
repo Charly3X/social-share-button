@@ -125,10 +125,10 @@ module SocialShareButton
 
     def get_count site, current_url
       if site =='facebook'
-        url = "https://api.facebook.com/method/links.getStats?urls=#{current_url}&format=json"
+        url = "https://graph.facebook.com/?id=#{current_url}"
         buffer = open(url).read
         result = JSON.parse(buffer)
-        result[0].nil? ? 0 : result[0]['share_count']
+        res = result.nil? ? 0 : result['share']['share_count']
       elsif site =='twitter'
         'twitter'
       elsif site =='google_plus'
