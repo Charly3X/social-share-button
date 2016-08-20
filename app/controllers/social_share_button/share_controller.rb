@@ -6,7 +6,6 @@ module SocialShareButton
       site = params[:site]
       current_url = URI.unescape(params[:current_url])
       res = 0
-      my_logger.info("params: #{current_url}")
       if site =='facebook'
         #url = "https://api.facebook.com/method/links.getStats?urls=#{current_url}&format=json"
         url = "https://graph.facebook.com/?id=#{current_url}"
@@ -20,7 +19,6 @@ module SocialShareButton
       elsif site =='google_plus'
         url = "https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ"
         response = post(url, JSON.dump(pr(current_url)), {content_type: :json, accept: :json})
-        my_logger.info("google_res: #{response}; url: #{url}")
         res = JSON.parse(response)[0]['result']['metadata']['globalCounts']['count'].to_i
       elsif site =='delicious'
         md5 = Digest::MD5.hexdigest(current_url)
@@ -35,7 +33,7 @@ module SocialShareButton
       end
       render text: res
     rescue Exception => e
-      my_logger.info "ERROR SHARE - #{e.message}"
+      my_logger.info "ERROR SHARE - #{e.message} - soc: #{site}"
       render text: 0
     end
 
