@@ -6,20 +6,20 @@ module SocialShareButton
       site = params[:site]
       current_url = params[:current_url]
       res = 0
-      my_logger.info("params: #{site}")
+      my_logger.info("params: #{current_url}")
       if site =='facebook'
         #url = "https://api.facebook.com/method/links.getStats?urls=#{current_url}&format=json"
         url = "https://graph.facebook.com/?id=#{current_url}"
         buffer = open(url).read
         result = JSON.parse(buffer)
-        my_logger.info("fb_res: #{result}")
+        my_logger.info("fb_res: #{result}; url: #{url}")
         res = result.nil? ? 0 : result['share']['share_count']
       elsif site =='twitter'
         'twitter'
       elsif site =='google_plus'
         url = "https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ"
         response = post(url, JSON.dump(pr(current_url)), {content_type: :json, accept: :json})
-        my_logger.info("google_res: #{response}")
+        my_logger.info("google_res: #{response}; url: #{url}")
         res = JSON.parse(response)[0]['result']['metadata']['globalCounts']['count'].to_i
       elsif site =='delicious'
         md5 = Digest::MD5.hexdigest(current_url)
