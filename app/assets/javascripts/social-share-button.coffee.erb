@@ -1,7 +1,8 @@
 $ ->
   $('.dyn_socical').each (i, obj) ->
+    btn = $(this);
     $.get "<%= SocialShareButton::Engine.routes.url_helpers.root_path %>", {site: $(this).attr('data-type'), current_url: $(this).attr('data-url')}, (data) =>
-      $(this).text data
+      btn.text data
       return
   return
 
