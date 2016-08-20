@@ -4,12 +4,13 @@ module SocialShareButton
     def get_count
       my_logger ||= Logger.new("#{Rails.root}/log/shared.log")
       site = params[:site]
-      current_url = params[:current_url]
+      current_url = URI.unescape(params[:current_url])
       res = 0
       my_logger.info("params: #{current_url}")
       if site =='facebook'
         #url = "https://api.facebook.com/method/links.getStats?urls=#{current_url}&format=json"
         url = "https://graph.facebook.com/?id=#{current_url}"
+        my_logger.info("fb_prep: url: #{url}")
         buffer = open(url).read
         result = JSON.parse(buffer)
         my_logger.info("fb_res: #{result}; url: #{url}")
