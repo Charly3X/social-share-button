@@ -10,14 +10,12 @@ module SocialShareButton
         url = "https://graph.facebook.com/?id=#{current_url}"
         buffer = open(url).read
         result = JSON.parse(buffer)
-        puts result
         res = result.nil? ? 0 : result['share']['share_count']
       elsif site =='twitter'
         'twitter'
       elsif site =='google_plus'
         url = "https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ"
         response = post(url, JSON.dump(pr(current_url)), {content_type: :json, accept: :json})
-        puts JSON.parse(response)
         res = JSON.parse(response)[0]['result']['metadata']['globalCounts']['count'].to_i
       elsif site =='delicious'
         md5 = Digest::MD5.hexdigest(current_url)
@@ -37,7 +35,7 @@ module SocialShareButton
     end
 
     def post(url, params, headers = {})
-      RestClient::Resource.new(url, timeout: 3, open_timeout: 3).post(params, headers)
+      RestClient::Resource.new(url, timeout: 5, open_timeout: 5).post(params, headers)
     end
 
     def pr checked_url

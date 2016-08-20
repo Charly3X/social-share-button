@@ -153,7 +153,7 @@ module SocialShareButton
     end
 
     def post(url, params, headers = {})
-      RestClient::Resource.new(url, timeout: 3, open_timeout: 3).post(params, headers)
+      RestClient::Resource.new(url, timeout: 5, open_timeout: 5).post(params, headers)
     end
 
     def pr checked_url
