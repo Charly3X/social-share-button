@@ -32,6 +32,7 @@ module SocialShareButton
       end
       render text: res
     rescue Exception => e
+      puts "ERROR SHARE - #{e.message}"
       render text: 0
     end
 
