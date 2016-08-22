@@ -125,7 +125,7 @@ module SocialShareButton
 
     def get_count site, current_url
       if site =='facebook'
-        url = "https://graph.facebook.com/?id=#{current_url}"
+        url = "https://graph.facebook.com/v2.3/?id=#{current_url}&access_token=341496876182072|JZAGmuAc6ivwjCJ6Eq2_BCGkCRM"
         buffer = open(url).read
         result = JSON.parse(buffer)
         res = result.nil? ? 0 : result['share']['share_count']

@@ -8,7 +8,7 @@ module SocialShareButton
       res = 0
       if site =='facebook'
         #url = "https://api.facebook.com/method/links.getStats?urls=#{current_url}&format=json"
-        url = "https://graph.facebook.com/v2.3/?id=#{current_url}&access_token=EAACEdEose0cBADWhtfadRJZB6cPZCYMgIEEV73oWhrDup70ee2ZCZCya9Ja0XxfKu7C2lOZA3MZABNvstd5cIUWnwQwC2dvY5D4fQUhMaZALkVYpA1QlVLZAX2ZBONhl5CaFkqJOWYuV6JfqpkHr4MkjzKnuNu7I2BAnf2EWG2EvxPwZDZD"
+        url = "https://graph.facebook.com/v2.3/?id=#{current_url}&access_token=341496876182072|JZAGmuAc6ivwjCJ6Eq2_BCGkCRM"
         my_logger.info("fb_prep: url: #{url}")
         buffer = open(url).read
         result = JSON.parse(buffer)
