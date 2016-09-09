@@ -9,11 +9,16 @@ module SocialShareButton
       if site =='facebook'
         #url = "https://api.facebook.com/method/links.getStats?urls=#{current_url}&format=json"
         url = "https://graph.facebook.com/v2.3/?id=#{current_url}&access_token=341496876182072|JZAGmuAc6ivwjCJ6Eq2_BCGkCRM"
-        my_logger.info("fb_prep: url: #{url}")
+        #my_logger.info("fb_prep: url: #{url}")
         buffer = open(url).read
         result = JSON.parse(buffer)
-        my_logger.info("fb_res: #{result}; url: #{url}")
+        #my_logger.info("fb_res: #{result}; url: #{url}")
         res = result.nil? ? 0 : result['share']['share_count']
+      elsif site =='facebook_lcb'
+        url = "https://graph.facebook.com/#{current_url}?fields=fan_count&access_token=341496876182072|JZAGmuAc6ivwjCJ6Eq2_BCGkCRM"
+        buffer = open(url).read
+        result = JSON.parse(buffer)
+        res = result.nil? ? 0 : result['fan_count']
       elsif site =='twitter'
         'twitter'
       elsif site =='google_plus'
