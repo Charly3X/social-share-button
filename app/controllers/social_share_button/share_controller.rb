@@ -39,7 +39,43 @@ module SocialShareButton
       render text: res
     rescue Exception => e
       my_logger.info "ERROR SHARE - #{e.message} - soc: #{site}"
-      render text: 0
+      res = 0
+      render text: res
+    ensure
+      save_to_db(res.to_i, site, current_url)
+    end
+
+    def save_to_db(count, type, url)
+      if defined? ShareCount
+        sh = ShareCount.where(url: url).first_or_initialize
+        if type == 'facebook'
+          sh.fb_count = count
+        elsif type == 'google_plus'
+          sh.google_count = count
+        end
+        sh.last_update = Time.now
+        sh.save
+      end
+    end
+
+    def reset_share_count
+      if defined? ShareCount
+        site = params[:site]
+        current_url = URI.unescape(params[:current_url])
+        if site == 'twitter'
+          sh = ShareCount.where(url: current_url).first_or_initialize
+          sh.twitter_count += 1
+          sh.save
+        else
+          sh = ShareCount.where(url: current_url).first
+          if sh
+            sh.last_update = nil
+            sh.save
+          end
+        end
+
+      end
+      render nothing: true
     end
 
     def post(url, params, headers = {})

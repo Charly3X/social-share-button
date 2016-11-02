@@ -52,16 +52,16 @@ module SocialShareButton
         name_class = name
         name_social = name
         shares = 'shares'
-        if name == 'twitter'
-          shares = nil
-        end
+        #if name == 'twitter'
+        #  shares = nil
+        #end
         if name == 'google_plus'
           name_class = 'google'
           name_social = 'Google+'
         end
 
         html << "<li class='ov_share_item'>"
-        html << "<a class='ov_share_link #{name_class}_mod' href='#' data-site='#{name}' onclick='return SocialShareButton.share(this);' >
+        html << "<a class='ov_share_link #{name_class}_mod click_sh' href='#' data-site='#{name}' onclick='return SocialShareButton.share(this);' >
                    <dl class='ov_share_dl'>
                      <dt class='ov_share_dt'>#{name_social.capitalize}</dt>
                      <dd class='ov_share_dd facebook_share_id'>#{get_count(name, opts[:url])} #{shares}</dd>
@@ -130,7 +130,16 @@ module SocialShareButton
         result = JSON.parse(buffer)
         res = result.nil? ? 0 : result['share']['share_count']
       elsif site =='twitter'
-        'twitter'
+        if defined? ShareCount
+          sh = ShareCount.where(url: current_url).first
+          if sh
+            return sh.twitter_count.to_s
+          else
+            0
+          end
+        else
+          'twitter'
+        end
       elsif site =='google_plus'
         url = "https://clients6.google.com/rpc?key=AIzaSyCKSbrvQasunBoV16zDH9R33D88CeLr9gQ"
         response = post(url, JSON.dump(pr(current_url)), {content_type: :json, accept: :json})

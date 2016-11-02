@@ -2,11 +2,16 @@ $ ->
   $('.dyn_socical').each (i, obj) ->
     btn = $(this);
     $.get "<%= SocialShareButton::Engine.routes.url_helpers.root_path %>", {site: $(this).attr('data-type'), current_url: $(this).attr('data-url')}, (data) =>
-      #console.log data
       btn.text data
       return
-  return
 
+  $(document).on 'click', '.click_sh', ->
+    console.log($(this))
+    $parent = $(this).parent().parent()
+    btn = $(this)
+    $.get "<%= SocialShareButton::Engine.routes.url_helpers.reset_share_count_path %>", {site: $(this).attr('data-site'), current_url: $parent.data("url")}, (data) =>
+      return
+  return
 
 window.SocialShareButton =
   openUrl : (url,popup) ->
