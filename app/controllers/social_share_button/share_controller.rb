@@ -58,6 +58,15 @@ module SocialShareButton
       end
     end
 
+    def inc_trend
+      if params[:share_object_class].present? && params[:share_object_id].present?
+        object = params[:share_object_class].classify.safe_constantize.find(params[:share_object_id])
+        object.news_trend.try(:add_current_frame_shares) if object.respond_to?(:news_trend)
+      end
+    rescue
+      true
+    end
+
     def reset_share_count
       if defined? ShareCount
         site = params[:site]
@@ -73,7 +82,7 @@ module SocialShareButton
             sh.save
           end
         end
-
+        inc_trend
       end
       render nothing: true
     end
