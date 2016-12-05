@@ -46,7 +46,9 @@ module SocialShareButton
 
     def social_share_button_window_tag(title = "", opts = {})
       html = []
-      html << "<ul class='ov_share_list social-share-button' data-title='#{h title}' data-img='#{opts[:image]}' data-url='#{opts[:url]}' data-desc='#{opts[:desc]}' data-popup='#{opts[:popup]}' data-via='#{opts[:via]}'>"
+      html << "<ul class='ov_share_list social-share-button' data-title='#{h title}' data-object-id='#{opts[:object_id]}'
+               data-object-class='#{opts[:object_class]}' data-img='#{opts[:image]}'
+               data-url='#{opts[:url]}' data-desc='#{opts[:desc]}' data-popup='#{opts[:popup]}' data-via='#{opts[:via]}'>"
 
       SocialShareButton.config.allow_sites.each do |name|
         name_class = name
