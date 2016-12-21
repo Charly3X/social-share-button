@@ -47,7 +47,8 @@ module SocialShareButton
 
     def save_to_db(count, type, url)
       if defined? ShareCount
-        sh = ShareCount.where(url: url).first_or_initialize
+        uri = url.gsub(/\?.*/, '')
+        sh = ShareCount.where(url: uri).first_or_initialize
         if type == 'facebook'
           sh.fb_count = count
         elsif type == 'google_plus'
@@ -56,6 +57,8 @@ module SocialShareButton
         sh.last_update = Time.now
         sh.save
       end
+    rescue
+      true
     end
 
     def inc_trend
