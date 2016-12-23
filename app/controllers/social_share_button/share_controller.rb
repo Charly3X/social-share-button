@@ -36,13 +36,12 @@ module SocialShareButton
         result = JSON.parse(buffer)['data']['children']
         res = result.map{|c| c['data']['score']}.reduce(:+) || 0
       end
+      save_to_db(res.to_i, site, current_url)
       render text: res
     rescue Exception => e
-      my_logger.info "ERROR SHARE - #{e.message} - soc: #{site}"
+      my_logger.info "ERROR SHARE - #{e.message} - soc: #{site}; url: #{current_url}"
       res = 0
       render text: res
-    ensure
-      save_to_db(res.to_i, site, current_url)
     end
 
     def save_to_db(count, type, url)
