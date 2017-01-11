@@ -48,13 +48,15 @@ module SocialShareButton
       if defined? ShareCount
         uri = url.gsub(/\?.*/, '')
         sh = ShareCount.where(url: uri).first_or_initialize
-        if type == 'facebook'
-          sh.fb_count = count
-        elsif type == 'google_plus'
-          sh.google_count = count
+        if (sh.fb_count == 0 && count != 0) || (sh.fb_count != 0 && count != 0) || (sh.fb_count == 0 && count == 0)
+          if type == 'facebook'
+            sh.fb_count = count
+          elsif type == 'google_plus'
+            sh.google_count = count
+          end
+          sh.last_update = Time.now
+          sh.save
         end
-        sh.last_update = Time.now
-        sh.save
       end
     rescue
       true
