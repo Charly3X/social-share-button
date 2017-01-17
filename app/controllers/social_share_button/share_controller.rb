@@ -27,7 +27,7 @@ module SocialShareButton
         res = JSON.parse(response)[0]['result']['metadata']['globalCounts']['count'].to_i
       elsif site =='delicious'
         md5 = Digest::MD5.hexdigest(current_url)
-        url = "http://feeds.delicious.com/v2/json/url/#{md5}"
+        url = "http://feeds.del.icio.us/v2/json/url/#{md5}"
         buffer = open(url).read
         res = JSON.parse(buffer).count
       elsif site == 'reddit'
