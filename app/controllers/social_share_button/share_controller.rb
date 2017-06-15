@@ -6,9 +6,10 @@ module SocialShareButton
       site = params[:site]
       current_url = URI.unescape(params[:current_url])
       res = 0
+      external_keys = YAML::load_file(Rails.root.join('config', 'socials.yml'))[Rails.env]
       if site =='facebook'
         #url = "https://api.facebook.com/method/links.getStats?urls=#{current_url}&format=json"
-        url = "https://graph.facebook.com/v2.3/?id=#{current_url}&access_token=341496876182072|JZAGmuAc6ivwjCJ6Eq2_BCGkCRM"
+        url = "https://graph.facebook.com/v2.6/?id=#{current_url}&access_token=#{external_keys['facebook']['key']}|#{external_keys['facebook']['secret']}"
         #my_logger.info("fb_prep: url: #{url}")
         buffer = open(url).read
         result = JSON.parse(buffer)
