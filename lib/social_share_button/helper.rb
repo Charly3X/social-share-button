@@ -127,7 +127,8 @@ module SocialShareButton
 
     def get_count site, current_url
       if site =='facebook'
-        url = "https://graph.facebook.com/v2.3/?id=#{current_url}&access_token=341496876182072|JZAGmuAc6ivwjCJ6Eq2_BCGkCRM"
+        external_keys = YAML::load_file(Rails.root.join('config', 'socials.yml'))[Rails.env]
+        url = "https://graph.facebook.com/v2.6/?id=#{current_url}&access_token=#{external_keys['facebook']['key']}|#{external_keys['facebook']['secret']}"
         buffer = open(url).read
         result = JSON.parse(buffer)
         res = result.nil? ? 0 : result['share']['share_count']
